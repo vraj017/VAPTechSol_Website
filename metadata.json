@@ -1,0 +1,6 @@
+{
+  "name": "VapTechSol - Enterprise Technology Architecture",
+  "description": "VapTechSol builds dependable, scalable, and user-centric digital products, enterprise custom software, web platforms, and mobile apps.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
