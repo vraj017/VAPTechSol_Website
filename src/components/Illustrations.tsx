@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { 
   Code, Laptop, Smartphone, Database, Zap, Shield, 
   Radio, Volume2, MapPin, Compass, CheckCircle2,
-  Server, Cpu, Layers, GitBranch, ArrowRight
+  Server, Cpu, Layers, GitBranch, ArrowRight,
+  Lock, Globe, TrendingUp
 } from 'lucide-react';
 import { 
   AnimatedTerminalIcon, 
@@ -463,96 +464,104 @@ export const RideSyncPhonePreview: React.FC<{ interactive?: boolean }> = ({ inte
   );
 };
 
-// Hero Platform Mockup for Home Screen
-export const HeroPlatformMockup: React.FC = () => {
+// Clean, standard services & capabilities overview for the Hero section
+export const HeroPlatformMockup: React.FC<{ onNavigate?: (page: any) => void }> = ({ onNavigate }) => {
   return (
-    <div className="w-full rounded-2xl bg-white border border-[#e5eaf2] shadow-xl overflow-hidden">
-      {/* Header Bar */}
-      <div className="bg-[#f0f3ff] px-4 py-3 border-b border-[#e5eaf2] flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-          <span className="text-xs font-mono text-[#424653] ml-2">vaptechsol / enterprise-platform</span>
+    <div className="w-full rounded-2xl bg-white border border-[#e2e8f0] shadow-sm p-6 sm:p-7 text-[#111c2d] space-y-5">
+      {/* Section Header */}
+      <div className="flex items-center justify-between pb-4 border-b border-[#f1f5f9]">
+        <div>
+          <h3 className="text-lg font-bold text-[#111c2d]">
+            Our Core Services
+          </h3>
+          <p className="text-xs text-[#64748b] mt-0.5">
+            End-to-end software engineering & digital solutions
+          </p>
         </div>
-        <span className="text-[11px] font-semibold text-[#004ab0] bg-white px-2.5 py-0.5 rounded border border-[#d0daf2]">
-          Ready to Deploy
+        <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#f1f5f9] text-[#475569]">
+          VapTechSol
         </span>
       </div>
 
-      {/* Container Cards */}
-      <div className="p-5 sm:p-6 space-y-4 bg-gradient-to-b from-[#f9f9ff] to-white">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-white p-4 rounded-xl border border-[#e5eaf2] shadow-sm hover:border-[#1865F2] transition-colors">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-bold text-[#111c2d]">Tailored Portals</span>
-              <AnimatedTerminalIcon size={18} />
-            </div>
-            <p className="text-xs text-[#424653] leading-relaxed mb-3">
-              Scalable web architectures crafted for responsive team operations.
+      {/* 4 Core Services List */}
+      <div className="space-y-3">
+        <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]/80 hover:border-[#1053D4]/40 transition-colors">
+          <div className="w-9 h-9 rounded-lg bg-blue-50 text-[#1053D4] flex items-center justify-center shrink-0 mt-0.5">
+            <Code className="w-4 h-4" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-[#111c2d]">
+              Custom Software Development
+            </h4>
+            <p className="text-xs text-[#64748b] mt-0.5 leading-relaxed">
+              Tailored business applications, automated workflows, and robust backend systems designed for your specific operations.
             </p>
-            <div className="flex items-center gap-1.5 text-[11px] text-[#004ab0] font-semibold">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1865F2] animate-ping" />
-              <span>Real-time Sync</span>
-            </div>
           </div>
+        </div>
 
-          <div className="bg-white p-4 rounded-xl border border-[#e5eaf2] shadow-sm hover:border-[#1865F2] transition-colors">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-bold text-[#111c2d]">Native Mobile</span>
-              <AnimatedMobileIcon size={18} />
-            </div>
-            <p className="text-xs text-[#424653] leading-relaxed mb-3">
-              Fluid cross-platform mobile apps built with performance-first design.
+        <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]/80 hover:border-[#1053D4]/40 transition-colors">
+          <div className="w-9 h-9 rounded-lg bg-blue-50 text-[#1053D4] flex items-center justify-center shrink-0 mt-0.5">
+            <Globe className="w-4 h-4" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-[#111c2d]">
+              Web Applications & Portals
+            </h4>
+            <p className="text-xs text-[#64748b] mt-0.5 leading-relaxed">
+              Fast, responsive web platforms and client dashboards built on modern technologies like React, Node, and TypeScript.
             </p>
-            <div className="flex items-center gap-1.5 text-[11px] text-emerald-700 font-semibold">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Offline Capable</span>
-            </div>
           </div>
         </div>
 
-        {/* Full width bottom card */}
-        <div className="bg-white p-4 rounded-xl border border-[#e5eaf2] shadow-sm hover:border-[#1865F2] transition-colors">
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center gap-2">
-              <AnimatedDatabaseIcon size={18} />
-              <span className="text-sm font-bold text-[#111c2d]">Integrated Data Architecture</span>
-            </div>
-            <span className="text-xs font-mono font-semibold bg-[#e8eeff] text-[#004ab0] px-2 py-0.5 rounded">
-              API v3.4
-            </span>
+        <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]/80 hover:border-[#1053D4]/40 transition-colors">
+          <div className="w-9 h-9 rounded-lg bg-blue-50 text-[#1053D4] flex items-center justify-center shrink-0 mt-0.5">
+            <Smartphone className="w-4 h-4" />
           </div>
-          <p className="text-xs text-[#424653] leading-relaxed mb-3">
-            Modular APIs designed for frictionless third-party connectivity.
-          </p>
-          <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#e5eaf2] text-[11px] font-mono text-[#737785]">
-            <div className="bg-[#f0f3ff] p-1.5 rounded text-center">
-              <span className="block text-[#004ab0] font-bold">100%</span>
-              <span>Test Coverage</span>
-            </div>
-            <div className="bg-[#f0f3ff] p-1.5 rounded text-center">
-              <span className="block text-[#004ab0] font-bold">&lt; 50ms</span>
-              <span>Avg Latency</span>
-            </div>
-            <div className="bg-[#f0f3ff] p-1.5 rounded text-center">
-              <span className="block text-emerald-600 font-bold">0 CVEs</span>
-              <span>Hardened</span>
-            </div>
+          <div>
+            <h4 className="text-sm font-bold text-[#111c2d]">
+              Mobile App Engineering
+            </h4>
+            <p className="text-xs text-[#64748b] mt-0.5 leading-relaxed">
+              Native and cross-platform iOS and Android applications with clean user interfaces and smooth real-world performance.
+            </p>
           </div>
         </div>
 
-        {/* Bottom trust indicators */}
-        <div className="flex items-center justify-between text-xs text-[#424653] pt-1">
-          <div className="flex items-center gap-1.5">
-            <AnimatedShieldIcon size={16} />
-            <span>High Security Standards</span>
+        <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]/80 hover:border-[#1053D4]/40 transition-colors">
+          <div className="w-9 h-9 rounded-lg bg-blue-50 text-[#1053D4] flex items-center justify-center shrink-0 mt-0.5">
+            <Layers className="w-4 h-4" />
           </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Continuous Rapid CI/CD</span>
+          <div>
+            <h4 className="text-sm font-bold text-[#111c2d]">
+              Digital Product Innovation
+            </h4>
+            <p className="text-xs text-[#64748b] mt-0.5 leading-relaxed">
+              From concept validation to production deployment, including proprietary products like the RideSync mobility platform.
+            </p>
           </div>
         </div>
+      </div>
+
+      {/* Clean Bottom Consultation Row */}
+      <div className="pt-3 border-t border-[#f1f5f9] flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="text-[#64748b]">
+          Have an inquiry?{' '}
+          <a
+            href="mailto:info@vaptechsol.com"
+            className="text-[#1053D4] font-medium hover:underline"
+          >
+            info@vaptechsol.com
+          </a>
+        </div>
+        {onNavigate && (
+          <button
+            onClick={() => onNavigate('services')}
+            className="cursor-pointer text-[#1053D4] font-semibold hover:text-[#0c44b0] flex items-center gap-1 transition-colors"
+          >
+            <span>View Services</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        )}
       </div>
     </div>
   );
