@@ -3,7 +3,8 @@ import {
   Code, Laptop, Smartphone, Database, Zap, Shield, 
   Radio, Volume2, MapPin, Compass, CheckCircle2,
   Server, Cpu, Layers, GitBranch, ArrowRight,
-  Lock, Globe, TrendingUp
+  Lock, Globe, TrendingUp, FileDiff, Sparkles,
+  Moon, Sun, Copy, Check, ExternalLink, GitCompare, Play
 } from 'lucide-react';
 import { 
   AnimatedTerminalIcon, 
@@ -459,6 +460,365 @@ export const RideSyncPhonePreview: React.FC<{ interactive?: boolean }> = ({ inte
             {toastMessage}
           </div>
         )}
+      </div>
+    </div>
+  );
+};
+
+// Interactive Align Web Studio Preview
+export const AlignEditorPreview: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'diff' | 'sql' | 'beautify'>('diff');
+  const [isDark, setIsDark] = useState(true);
+  const [isSplit, setIsSplit] = useState(true);
+  const [formatted, setFormatted] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [sqlDialect, setSqlDialect] = useState<'PostgreSQL' | 'T-SQL' | 'MySQL'>('PostgreSQL');
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleFormat = () => {
+    setFormatted(true);
+    setTimeout(() => setFormatted(false), 2200);
+  };
+
+  return (
+    <div className={`relative w-full max-w-[560px] mx-auto rounded-2xl border transition-all duration-300 shadow-2xl overflow-hidden font-sans text-xs ${
+      isDark 
+        ? 'bg-[#0f1117] border-[#2d3348] text-slate-200' 
+        : 'bg-[#fcfdff] border-[#d8e0f0] text-slate-800'
+    }`}>
+      {/* 1. Browser/App Header Bar */}
+      <div className={`px-4 py-3 flex items-center justify-between border-b transition-colors ${
+        isDark ? 'bg-[#161a26] border-[#262c3e]' : 'bg-[#f1f4fb] border-[#e2e8f5]'
+      }`}>
+        {/* Window controls */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-[#ef4444]" />
+            <span className="w-3 h-3 rounded-full bg-[#f59e0b]" />
+            <span className="w-3 h-3 rounded-full bg-[#10b981]" />
+          </div>
+          <div className="hidden sm:flex items-center gap-1.5 ml-2 font-mono text-[11px] font-bold text-[#ff6b00]">
+            <span>Align</span>
+            <span className={`text-[9px] uppercase px-1.5 py-0.2 rounded font-semibold ${
+              isDark ? 'bg-orange-500/20 text-orange-300' : 'bg-orange-100 text-orange-700'
+            }`}>
+              Studio
+            </span>
+          </div>
+        </div>
+
+        {/* Browser URL pill */}
+        <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono border transition-colors ${
+          isDark 
+            ? 'bg-[#0d0f15] border-[#2a3045] text-slate-300' 
+            : 'bg-white border-[#d8e0f0] text-slate-600 shadow-2xs'
+        }`}>
+          <Lock className="w-3 h-3 text-emerald-500" />
+          <span className="font-semibold text-[#1053D4]">align</span>
+          <span>.vaptechsol.com</span>
+        </div>
+
+        {/* Quick controls (Theme toggle & Live link) */}
+        <div className="flex items-center gap-1.5">
+          <button
+            onClick={() => setIsDark(!isDark)}
+            aria-label="Toggle theme"
+            className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
+              isDark 
+                ? 'bg-[#1f2537] border-[#2e364f] hover:bg-[#283047] text-amber-300' 
+                : 'bg-white border-[#d8e0f0] hover:bg-slate-100 text-slate-700'
+            }`}
+            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+          </button>
+          
+          <a
+            href="https://align.vaptechsol.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#ff6b00] hover:bg-[#e05e00] text-white text-[11px] font-bold transition-all shadow-xs cursor-pointer"
+            title="Open Live Web App in New Tab"
+          >
+            <span>Live</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
+      </div>
+
+      {/* 2. Primary Navigation Tabs */}
+      <div className={`px-3 py-2 flex items-center justify-between border-b gap-2 overflow-x-auto ${
+        isDark ? 'bg-[#121622] border-[#222839]' : 'bg-[#f7f9fd] border-[#e7edf7]'
+      }`}>
+        <div className="flex items-center gap-1.5">
+          <button
+            onClick={() => setActiveTab('diff')}
+            className={`cursor-pointer px-3 py-1.5 rounded-lg font-mono text-[11px] font-bold flex items-center gap-1.5 transition-all ${
+              activeTab === 'diff'
+                ? 'bg-[#ff6b00] text-white shadow-xs'
+                : isDark 
+                  ? 'text-slate-400 hover:text-white hover:bg-[#1a2030]' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+            }`}
+          >
+            <GitCompare className="w-3.5 h-3.5" />
+            <span>Code Compare</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('sql')}
+            className={`cursor-pointer px-3 py-1.5 rounded-lg font-mono text-[11px] font-bold flex items-center gap-1.5 transition-all ${
+              activeTab === 'sql'
+                ? 'bg-[#ff6b00] text-white shadow-xs'
+                : isDark 
+                  ? 'text-slate-400 hover:text-white hover:bg-[#1a2030]' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+            }`}
+          >
+            <Database className="w-3.5 h-3.5" />
+            <span>SQL Compare</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('beautify')}
+            className={`cursor-pointer px-3 py-1.5 rounded-lg font-mono text-[11px] font-bold flex items-center gap-1.5 transition-all ${
+              activeTab === 'beautify'
+                ? 'bg-[#ff6b00] text-white shadow-xs'
+                : isDark 
+                  ? 'text-slate-400 hover:text-white hover:bg-[#1a2030]' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Beautifier</span>
+          </button>
+        </div>
+
+        {/* Secondary context controls */}
+        <div className="flex items-center gap-1.5">
+          {activeTab === 'diff' && (
+            <button
+              onClick={() => setIsSplit(!isSplit)}
+              className={`cursor-pointer px-2.5 py-1 rounded text-[10px] font-mono font-semibold border transition-all ${
+                isDark 
+                  ? 'bg-[#1b2234] border-[#2e374f] text-slate-300 hover:border-slate-500' 
+                  : 'bg-white border-slate-300 text-slate-700 hover:border-slate-400 shadow-2xs'
+              }`}
+            >
+              {isSplit ? 'Split: Side-by-Side' : 'Split: Inline'}
+            </button>
+          )}
+
+          {activeTab === 'sql' && (
+            <div className="flex items-center gap-1">
+              {(['PostgreSQL', 'T-SQL', 'MySQL'] as const).map(d => (
+                <button
+                  key={d}
+                  onClick={() => setSqlDialect(d)}
+                  className={`cursor-pointer px-2 py-0.5 rounded text-[10px] font-mono font-bold transition-all ${
+                    sqlDialect === d
+                      ? 'bg-[#1053D4] text-white'
+                      : isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'beautify' && (
+            <button
+              onClick={handleFormat}
+              className="cursor-pointer inline-flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-mono font-bold bg-[#1053D4] hover:bg-[#0c44b0] text-white transition-all shadow-xs active:scale-95"
+            >
+              <Sparkles className="w-3 h-3" />
+              <span>{formatted ? '✓ Aligned!' : 'Format & Align'}</span>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* 3. Interactive Code Canvas */}
+      <div className="p-3 sm:p-4 min-h-[300px] flex flex-col justify-between font-mono text-[11px] sm:text-xs">
+        {/* TAB 1: CODE COMPARE / DIFF VIEW */}
+        {activeTab === 'diff' && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between text-[10px] text-slate-400 pb-1 border-b border-dashed border-slate-700/40">
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>Language: TypeScript</span>
+              </span>
+              <span className="text-emerald-400 font-semibold">+2 additions, -2 deletions</span>
+            </div>
+
+            {isSplit ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {/* Original side */}
+                <div className={`p-2.5 rounded-xl border ${
+                  isDark ? 'bg-[#090b10] border-[#222736]' : 'bg-[#f4f7fc] border-[#d8e0f0]'
+                }`}>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+                    <span>Original Code</span>
+                    <span className="text-rose-400 font-mono">- legacy</span>
+                  </div>
+                  <div className="space-y-1 overflow-x-auto leading-relaxed">
+                    <div className="text-slate-400">1  <span className="text-purple-400">export async function</span> <span className="text-blue-400">login</span>(req) &#123;</div>
+                    <div className="bg-rose-500/15 text-rose-300 px-1 rounded border-l-2 border-rose-500">2-   <span className="text-purple-400">const</span> res = <span className="text-purple-400">await</span> legacyAuth(req);</div>
+                    <div className="bg-rose-500/15 text-rose-300 px-1 rounded border-l-2 border-rose-500">3-   <span className="text-purple-400">if</span> (!res.ok) <span className="text-purple-400">return null</span>;</div>
+                    <div className="text-slate-400">4    <span className="text-purple-400">return</span> res.user;</div>
+                    <div className="text-slate-400">5  &#125;</div>
+                  </div>
+                </div>
+
+                {/* Modified side */}
+                <div className={`p-2.5 rounded-xl border ${
+                  isDark ? 'bg-[#090b10] border-[#222736]' : 'bg-[#f4f7fc] border-[#d8e0f0]'
+                }`}>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+                    <span>Modified Code</span>
+                    <span className="text-emerald-400 font-mono">+ modern</span>
+                  </div>
+                  <div className="space-y-1 overflow-x-auto leading-relaxed">
+                    <div className="text-slate-400">1  <span className="text-purple-400">export async function</span> <span className="text-blue-400">login</span>(req) &#123;</div>
+                    <div className="bg-emerald-500/15 text-emerald-300 px-1 rounded border-l-2 border-emerald-500">2+   <span className="text-purple-400">const</span> res = <span className="text-purple-400">await</span> modernSSOAuth(req);</div>
+                    <div className="bg-emerald-500/15 text-emerald-300 px-1 rounded border-l-2 border-emerald-500">3+   <span className="text-purple-400">if</span> (!res.ok) <span className="text-purple-400">throw new</span> AuthError();</div>
+                    <div className="text-slate-400">4    <span className="text-purple-400">return</span> res.user;</div>
+                    <div className="text-slate-400">5  &#125;</div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* Inline Unified View */
+              <div className={`p-3 rounded-xl border overflow-x-auto space-y-1 leading-relaxed ${
+                isDark ? 'bg-[#090b10] border-[#222736]' : 'bg-[#f4f7fc] border-[#d8e0f0]'
+              }`}>
+                <div className="text-slate-400">1    <span className="text-purple-400">export async function</span> <span className="text-blue-400">login</span>(req) &#123;</div>
+                <div className="bg-rose-500/15 text-rose-300 px-1.5 py-0.5 rounded border-l-2 border-rose-500">2-   <span className="text-purple-400">const</span> res = <span className="text-purple-400">await</span> legacyAuth(req);</div>
+                <div className="bg-rose-500/15 text-rose-300 px-1.5 py-0.5 rounded border-l-2 border-rose-500">3-   <span className="text-purple-400">if</span> (!res.ok) <span className="text-purple-400">return null</span>;</div>
+                <div className="bg-emerald-500/15 text-emerald-300 px-1.5 py-0.5 rounded border-l-2 border-emerald-500">2+   <span className="text-purple-400">const</span> res = <span className="text-purple-400">await</span> modernSSOAuth(req);</div>
+                <div className="bg-emerald-500/15 text-emerald-300 px-1.5 py-0.5 rounded border-l-2 border-emerald-500">3+   <span className="text-purple-400">if</span> (!res.ok) <span className="text-purple-400">throw new</span> AuthError();</div>
+                <div className="text-slate-400">4    <span className="text-purple-400">return</span> res.user;</div>
+                <div className="text-slate-400">5  &#125;</div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 2: SQL COMPARE & NORMALIZATION */}
+        {activeTab === 'sql' && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between text-[10px] text-slate-400 pb-1 border-b border-dashed border-slate-700/40">
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-blue-400" />
+                <span>Dialect: <strong>{sqlDialect}</strong> AST Validator</span>
+              </span>
+              <span className="text-amber-400 font-semibold">Keywords Normalized (UPPERCASE)</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className={`p-2.5 rounded-xl border ${
+                isDark ? 'bg-[#090b10] border-[#222736]' : 'bg-[#f4f7fc] border-[#d8e0f0]'
+              }`}>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                  Unformatted Input SQL
+                </div>
+                <div className="text-slate-400 font-mono text-[11px] leading-relaxed break-all">
+                  select u.id, u.name, o.total, count(o.id) from users u left join orders o on u.id=o.uid where o.status='completed' group by u.id, u.name order by o.total desc limit 10;
+                </div>
+              </div>
+
+              <div className={`p-2.5 rounded-xl border ${
+                isDark ? 'bg-[#090b10] border-[#222736]' : 'bg-[#f4f7fc] border-[#d8e0f0]'
+              }`}>
+                <div className="text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+                  <span>Aligned Dialect Query</span>
+                  <span className="text-emerald-400 text-[10px]">✓ Validated</span>
+                </div>
+                <div className="space-y-0.5 text-slate-300 font-mono text-[11px] leading-relaxed">
+                  <div><span className="text-blue-400 font-bold">SELECT</span></div>
+                  <div className="pl-3">u.id, u.name, o.total, <span className="text-cyan-400">COUNT</span>(o.id)</div>
+                  <div><span className="text-blue-400 font-bold">FROM</span> users u</div>
+                  <div><span className="text-blue-400 font-bold">LEFT JOIN</span> orders o <span className="text-blue-400 font-bold">ON</span> u.id = o.uid</div>
+                  <div><span className="text-blue-400 font-bold">WHERE</span> o.status = <span className="text-emerald-400">'completed'</span></div>
+                  <div><span className="text-blue-400 font-bold">GROUP BY</span> u.id, u.name</div>
+                  <div><span className="text-blue-400 font-bold">ORDER BY</span> o.total <span className="text-amber-400 font-bold">DESC</span></div>
+                  <div><span className="text-blue-400 font-bold">LIMIT</span> 10;</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: BEAUTIFIER & FORMATTER */}
+        {activeTab === 'beautify' && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between text-[10px] text-slate-400 pb-1 border-b border-dashed border-slate-700/40">
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-orange-400" />
+                <span>Multi-Language Beautifier: JSON / JS / CSS / HTML</span>
+              </span>
+              <button
+                onClick={handleCopy}
+                className="cursor-pointer flex items-center gap-1 text-slate-300 hover:text-white"
+              >
+                {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                <span>{copied ? 'Copied!' : 'Copy Code'}</span>
+              </button>
+            </div>
+
+            <div className={`p-3 rounded-xl border relative transition-all ${
+              isDark ? 'bg-[#090b10] border-[#222736]' : 'bg-[#f4f7fc] border-[#d8e0f0]'
+            }`}>
+              {formatted && (
+                <div className="absolute top-2 right-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded text-[10px] font-bold animate-pulse">
+                  Formatted in 0.18ms 🚀
+                </div>
+              )}
+              <div className="space-y-1 font-mono text-[11px] leading-relaxed">
+                <div>&#123;</div>
+                <div className="pl-4"><span className="text-blue-400">"product"</span>: <span className="text-emerald-400">"Align"</span>,</div>
+                <div className="pl-4"><span className="text-blue-400">"suite"</span>: <span className="text-emerald-400">"Code Differ & Beautifier"</span>,</div>
+                <div className="pl-4"><span className="text-blue-400">"engine"</span>: <span className="text-emerald-400">"Monaco Core"</span>,</div>
+                <div className="pl-4"><span className="text-blue-400">"execution"</span>: <span className="text-emerald-400">"100% In-Browser (Zero Server Leak)"</span>,</div>
+                <div className="pl-4"><span className="text-blue-400">"languages"</span>: [</div>
+                <div className="pl-8"><span className="text-amber-400">"TypeScript"</span>, <span className="text-amber-400">"JavaScript"</span>, <span className="text-amber-400">"SQL"</span>, <span className="text-amber-400">"JSON"</span>, <span className="text-amber-400">"HTML"</span>, <span className="text-amber-400">"CSS"</span></div>
+                <div className="pl-4">],</div>
+                <div className="pl-4"><span className="text-blue-400">"author"</span>: &#123;</div>
+                <div className="pl-8"><span className="text-blue-400">"name"</span>: <span className="text-emerald-400">"VAPTechSol"</span>,</div>
+                <div className="pl-8"><span className="text-blue-400">"url"</span>: <span className="text-cyan-400">"https://vaptechsol.com"</span></div>
+                <div className="pl-4">&#125;</div>
+                <div>&#125;</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 4. Bottom Specs & Status Pill Footer */}
+        <div className={`mt-3 pt-2.5 border-t flex flex-wrap items-center justify-between gap-2 text-[10px] ${
+          isDark ? 'border-[#222839] text-slate-400' : 'border-[#e5eaf2] text-slate-600'
+        }`}>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            <span className="font-semibold text-emerald-400">Zero Server-Side Storage</span>
+            <span>•</span>
+            <span>Monaco Diff Engine</span>
+          </div>
+
+          <a
+            href="https://align.vaptechsol.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-bold text-[#ff6b00] hover:underline cursor-pointer"
+          >
+            <span>Launch Align Live App</span>
+            <ArrowRight className="w-3 h-3" />
+          </a>
+        </div>
       </div>
     </div>
   );

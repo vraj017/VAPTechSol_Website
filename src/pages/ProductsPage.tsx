@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageRoute } from '../types.ts';
-import { RideSyncPhonePreview } from '../components/Illustrations.tsx';
+import { RideSyncPhonePreview, AlignEditorPreview } from '../components/Illustrations.tsx';
 import { 
   AnimatedRadarIcon, 
   AnimatedRadioIcon, 
@@ -10,10 +10,11 @@ import {
   AnimatedCompassIcon,
   AnimatedLockNdaIcon,
   AnimatedRocketIcon,
+  AnimatedTerminalIcon,
   ScrollReveal
 } from '../components/AnimatedIcons.tsx';
 import { 
-  WifiOff, ArrowRight, Mail
+  WifiOff, ArrowRight, Mail, ExternalLink, Database, Sparkles, GitCompare, Lock, CheckCircle2
 } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -36,13 +37,32 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
           </h1>
 
           <p className="text-base sm:text-lg text-[#424653] max-w-3xl mx-auto leading-relaxed">
-            In addition to client engineering services, VapTechSol designs, engineers, and operates proprietary digital applications and mobility systems built on resilient distributed foundations.
+            In addition to client engineering services, VapTechSol designs, engineers, and operates proprietary digital applications and developer tools built on resilient distributed foundations and client-side performance.
           </p>
+
+          {/* Quick Product Quicklinks */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
+            <a
+              href="#ridesync"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#d0daf2] hover:border-[#1053D4] text-[#111c2d] hover:text-[#1053D4] text-xs font-bold transition-all shadow-2xs cursor-pointer"
+            >
+              <AnimatedRadarIcon size={16} />
+              <span>RideSync • Mobility Companion</span>
+            </a>
+            <a
+              href="#align"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#d0daf2] hover:border-[#ff6b00] text-[#111c2d] hover:text-[#ff6b00] text-xs font-bold transition-all shadow-2xs cursor-pointer"
+            >
+              <GitCompare className="w-4 h-4 text-[#ff6b00]" />
+              <span>Align • Code Differ & Beautifier</span>
+              <span className="text-[10px] font-mono bg-orange-100 text-orange-700 px-1.5 py-0.2 rounded font-semibold">Live Web App</span>
+            </a>
+          </div>
         </div>
       </section>
 
       {/* 2. FEATURED FLAGSHIP PRODUCT: RIDESYNC */}
-      <section className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="ridesync" className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
         <ScrollReveal>
           <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#d0daf2] shadow-md grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Details */}
@@ -134,7 +154,100 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
         </ScrollReveal>
       </section>
 
-      {/* 3. PRODUCT ENGINEERING PRINCIPLES */}
+      {/* 3. FEATURED FLAGSHIP PRODUCT: ALIGN */}
+      <section id="align" className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+        <ScrollReveal>
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#d0daf2] shadow-md grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Details */}
+            <div className="lg:col-span-6 space-y-6">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#ff6b00] bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-200">
+                <AnimatedTerminalIcon size={16} />
+                <span>Featured Flagship Product • Developer Tools & Code Utility</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111c2d] tracking-tight">
+                Align: High-Performance Code Diff & Beautifier Studio
+              </h2>
+
+              <p className="text-base text-[#424653] leading-relaxed">
+                A modern, in-browser developer utility designed for instantaneous side-by-side code diffing, multi-dialect SQL comparison, and zero-compromise syntax beautification. Built with Monaco Editor for complete client-side privacy—no code ever leaves your browser.
+              </p>
+
+              {/* 4 Feature Points (2x2 grid) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
+                <div className="bg-[#fff9f5] p-4 rounded-2xl border border-orange-100 space-y-2 hover:border-[#ff6b00] transition-colors">
+                  <div className="flex items-center gap-2.5 font-bold text-sm text-[#111c2d]">
+                    <GitCompare className="w-5 h-5 text-[#ff6b00]" />
+                    <span>Monaco Code Diff</span>
+                  </div>
+                  <p className="text-xs text-[#424653] leading-relaxed">
+                    Split and inline code comparisons with sub-millisecond AST diffing and syntax highlighting for 15+ languages.
+                  </p>
+                </div>
+
+                <div className="bg-[#fff9f5] p-4 rounded-2xl border border-orange-100 space-y-2 hover:border-[#ff6b00] transition-colors">
+                  <div className="flex items-center gap-2.5 font-bold text-sm text-[#111c2d]">
+                    <Database className="w-5 h-5 text-[#ff6b00]" />
+                    <span>SQL Compare & Dialects</span>
+                  </div>
+                  <p className="text-xs text-[#424653] leading-relaxed">
+                    Compare complex SQL queries, normalize keyword casings, and align clauses across PostgreSQL, T-SQL, and MySQL.
+                  </p>
+                </div>
+
+                <div className="bg-[#fff9f5] p-4 rounded-2xl border border-orange-100 space-y-2 hover:border-[#ff6b00] transition-colors">
+                  <div className="flex items-center gap-2.5 font-bold text-sm text-[#111c2d]">
+                    <Sparkles className="w-5 h-5 text-[#ff6b00]" />
+                    <span>Multi-Language Beautifier</span>
+                  </div>
+                  <p className="text-xs text-[#424653] leading-relaxed">
+                    Instant formatting, indentation cleanup, and minified code unpacking for JS, TS, HTML, CSS, JSON, and SQL.
+                  </p>
+                </div>
+
+                <div className="bg-[#fff9f5] p-4 rounded-2xl border border-orange-100 space-y-2 hover:border-[#ff6b00] transition-colors">
+                  <div className="flex items-center gap-2.5 font-bold text-sm text-[#111c2d]">
+                    <Lock className="w-5 h-5 text-emerald-600" />
+                    <span>100% Client-Side Privacy</span>
+                  </div>
+                  <p className="text-xs text-[#424653] leading-relaxed">
+                    Zero telemetry, zero server-side storage. Proprietary enterprise code remains strictly inside your local browser.
+                  </p>
+                </div>
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-wrap items-center gap-4 pt-4">
+                <a
+                  href="https://align.vaptechsol.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#ff6b00] hover:bg-[#e05e00] text-white text-sm font-semibold shadow-md transition-all active:scale-[0.99] group"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>Launch Align Live (Free App)</span>
+                  <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
+
+                <a
+                  href="mailto:info@vaptechsol.com"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white border border-[#d0daf2] hover:border-[#ff6b00] text-[#111c2d] hover:text-[#ff6b00] text-sm font-semibold transition-all shadow-xs group"
+                >
+                  <Mail className="w-4 h-4 text-[#ff6b00] transition-transform group-hover:scale-110" />
+                  <span>info@vaptechsol.com</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Right Interactive App Studio Preview */}
+            <div className="lg:col-span-6 flex justify-center">
+              <AlignEditorPreview />
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* 4. PRODUCT ENGINEERING PRINCIPLES */}
       <section className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">

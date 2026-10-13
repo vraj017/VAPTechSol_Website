@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageRoute } from '../types.ts';
-import { HeroPlatformMockup, RideSyncPhonePreview } from '../components/Illustrations.tsx';
+import { HeroPlatformMockup, RideSyncPhonePreview, AlignEditorPreview } from '../components/Illustrations.tsx';
 import { 
   AnimatedTerminalIcon, 
   AnimatedGlobeIcon, 
@@ -19,7 +19,7 @@ import {
   ScrollReveal 
 } from '../components/AnimatedIcons.tsx';
 import { 
-  ArrowRight, ChevronDown, ChevronUp, Mail
+  ArrowRight, ChevronDown, ChevronUp, Mail, ExternalLink, GitCompare, Database, Sparkles, Lock
 } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -29,6 +29,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [featuredProduct, setFeaturedProduct] = useState<'ridesync' | 'align'>('ridesync');
 
   const faqs = [
     {
@@ -295,94 +296,245 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 4. FEATURED PRODUCT: RIDESYNC */}
+      {/* 4. FEATURED PRODUCTS SUITE: RIDESYNC & ALIGN */}
       <section className="bg-gradient-to-b from-[#f0f3ff] via-[#e8eeff]/50 to-[#f9f9ff] py-16 border-y border-[#d0daf2]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content */}
-            <ScrollReveal direction="left" className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#c3c6d6] text-[#1053D4] text-xs font-bold tracking-wide shadow-xs">
-                <AnimatedRadarIcon size={16} />
-                <span>FEATURED PRODUCT • MOBILITY TECHNOLOGY</span>
-              </div>
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          {/* Section Header & Interactive Product Switcher */}
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#c3c6d6] text-[#1053D4] text-xs font-bold tracking-wide shadow-xs">
+              <AnimatedRocketIcon size={16} />
+              <span>VAPTECHSOL PRODUCT LABS • PROPRIETARY SUITE</span>
+            </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#111c2d] tracking-tight leading-tight">
-                We Don't Just Build Solutions.{' '}
-                <span className="text-[#1053D4]">We Build Products.</span>
-              </h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#111c2d] tracking-tight leading-tight">
+              We Don't Just Build Solutions.{' '}
+              <span className="text-[#1053D4]">We Build Products.</span>
+            </h2>
 
-              <p className="text-base text-[#424653] leading-relaxed max-w-xl">
-                A connected riding companion designed to help group travelers coordinate rides, share live locations, and communicate throughout their journey.
-              </p>
+            <p className="text-base text-[#424653] leading-relaxed">
+              In addition to client engineering services, our internal product labs engineer, maintain, and operate proprietary digital platforms and developer tools deployed in live production.
+            </p>
 
-              {/* 4 Features Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
-                <div className="space-y-1.5 bg-white/70 backdrop-blur-xs p-4 rounded-2xl border border-blue-100 hover:border-[#1053D4] transition-colors">
-                  <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
-                    <AnimatedRadarIcon size={20} />
-                    <span>Live Group Location</span>
-                  </div>
-                  <p className="text-xs text-[#424653] leading-relaxed">
-                    Real-time convoy tracking with sub-second telemetry and minimal battery drain.
-                  </p>
-                </div>
+            {/* Interactive Switcher Pills */}
+            <div className="inline-flex p-1.5 bg-white/90 backdrop-blur rounded-2xl border border-[#d0daf2] shadow-sm gap-2">
+              <button
+                onClick={() => setFeaturedProduct('ridesync')}
+                className={`cursor-pointer px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2.5 transition-all ${
+                  featuredProduct === 'ridesync'
+                    ? 'bg-[#1053D4] text-white shadow-md'
+                    : 'text-[#424653] hover:text-[#111c2d] hover:bg-slate-100/80'
+                }`}
+              >
+                <AnimatedRadarIcon size={18} />
+                <span className="text-left leading-tight">
+                  <span className="block font-bold">RideSync</span>
+                  <span className={`block text-[10px] font-medium ${
+                    featuredProduct === 'ridesync' ? 'text-blue-100' : 'text-[#737785]'
+                  }`}>Mobility Companion</span>
+                </span>
+              </button>
 
-                <div className="space-y-1.5 bg-white/70 backdrop-blur-xs p-4 rounded-2xl border border-blue-100 hover:border-[#1053D4] transition-colors">
-                  <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
-                    <AnimatedRadioIcon size={20} />
-                    <span>Push-to-Talk Voice</span>
-                  </div>
-                  <p className="text-xs text-[#424653] leading-relaxed">
-                    Low-latency audio channels built for instant hands-free rider chatter.
-                  </p>
-                </div>
-
-                <div className="space-y-1.5 bg-white/70 backdrop-blur-xs p-4 rounded-2xl border border-blue-100 hover:border-[#1053D4] transition-colors">
-                  <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
-                    <AnimatedCompassIcon size={20} />
-                    <span>Offline Route Navigation</span>
-                  </div>
-                  <p className="text-xs text-[#424653] leading-relaxed">
-                    Uninterrupted waypoint tracking and map caching even in remote canyons.
-                  </p>
-                </div>
-
-                <div className="space-y-1.5 bg-white/70 backdrop-blur-xs p-4 rounded-2xl border border-blue-100 hover:border-[#1053D4] transition-colors">
-                  <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
-                    <AnimatedShieldIcon size={20} />
-                    <span>Smart Convoy Alerts</span>
-                  </div>
-                  <p className="text-xs text-[#424653] leading-relaxed">
-                    Instant hazard notifications, pace tracking, and rider gap warnings.
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-4 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => onNavigate('products')}
-                  className="cursor-pointer inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#1053D4] hover:bg-[#0c44b0] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all active:scale-[0.99]"
-                >
-                  <AnimatedRadarIcon size={18} />
-                  <span>Explore RideSync Live Demo</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <a
-                  href="mailto:info@vaptechsol.com"
-                  className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-white/80 border border-blue-200 hover:border-[#1053D4] text-[#111c2d] hover:text-[#1053D4] text-sm font-semibold transition-all shadow-xs group"
-                >
-                  <Mail className="w-4 h-4 text-[#1053D4] transition-transform group-hover:scale-110" />
-                  <span>info@vaptechsol.com</span>
-                </a>
-              </div>
-            </ScrollReveal>
-
-            {/* Right Interactive Phone Preview */}
-            <ScrollReveal direction="right" className="lg:col-span-5 flex justify-center">
-              <RideSyncPhonePreview />
-            </ScrollReveal>
+              <button
+                onClick={() => setFeaturedProduct('align')}
+                className={`cursor-pointer px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2.5 transition-all ${
+                  featuredProduct === 'align'
+                    ? 'bg-[#ff6b00] text-white shadow-md'
+                    : 'text-[#424653] hover:text-[#111c2d] hover:bg-slate-100/80'
+                }`}
+              >
+                <GitCompare className="w-4 h-4" />
+                <span className="text-left leading-tight">
+                  <span className="block font-bold flex items-center gap-1.5">
+                    <span>Align</span>
+                    <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded font-semibold uppercase ${
+                      featuredProduct === 'align' ? 'bg-white/20 text-white' : 'bg-orange-100 text-orange-700'
+                    }`}>Live</span>
+                  </span>
+                  <span className={`block text-[10px] font-medium ${
+                    featuredProduct === 'align' ? 'text-orange-100' : 'text-[#737785]'
+                  }`}>Code Differ & Beautifier</span>
+                </span>
+              </button>
+            </div>
           </div>
+
+          {/* PRODUCT 1: RIDESYNC */}
+          {featuredProduct === 'ridesync' && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-2">
+              {/* Left Content */}
+              <ScrollReveal direction="left" className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-blue-200 text-[#1053D4] text-xs font-bold tracking-wide shadow-xs">
+                  <AnimatedRadarIcon size={16} />
+                  <span>MOBILITY PLATFORM • CONNECTED CONVOYS</span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-[#111c2d] tracking-tight leading-snug">
+                  RideSync: Connected Group Riding Companion
+                </h3>
+
+                <p className="text-base text-[#424653] leading-relaxed max-w-xl">
+                  A connected riding companion designed to help group travelers coordinate road trips, share live GPS locations, and communicate via low-latency push-to-talk voice throughout their journey.
+                </p>
+
+                {/* 4 Features Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                  <div className="space-y-1.5 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-blue-100 hover:border-[#1053D4] transition-colors shadow-2xs">
+                    <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
+                      <AnimatedRadarIcon size={20} />
+                      <span>Live Group Location</span>
+                    </div>
+                    <p className="text-xs text-[#424653] leading-relaxed">
+                      Real-time convoy tracking with sub-second telemetry and minimal battery drain.
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-blue-100 hover:border-[#1053D4] transition-colors shadow-2xs">
+                    <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
+                      <AnimatedRadioIcon size={20} />
+                      <span>Push-to-Talk Voice</span>
+                    </div>
+                    <p className="text-xs text-[#424653] leading-relaxed">
+                      Low-latency audio channels built for instant hands-free rider chatter.
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-blue-100 hover:border-[#1053D4] transition-colors shadow-2xs">
+                    <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
+                      <AnimatedCompassIcon size={20} />
+                      <span>Offline Route Navigation</span>
+                    </div>
+                    <p className="text-xs text-[#424653] leading-relaxed">
+                      Uninterrupted waypoint tracking and map caching even in remote canyons.
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-blue-100 hover:border-[#1053D4] transition-colors shadow-2xs">
+                    <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
+                      <AnimatedShieldIcon size={20} />
+                      <span>Smart Convoy Alerts</span>
+                    </div>
+                    <p className="text-xs text-[#424653] leading-relaxed">
+                      Instant hazard notifications, pace tracking, and rider gap warnings.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 flex flex-wrap items-center gap-4">
+                  <a
+                    href="https://ridesync.vaptechsol.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#1053D4] hover:bg-[#0c44b0] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all active:scale-[0.99] group"
+                  >
+                    <AnimatedRadarIcon size={18} />
+                    <span>Explore RideSync Demo</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </a>
+
+                  <button
+                    onClick={() => onNavigate('products')}
+                    className="cursor-pointer inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white border border-[#d0daf2] hover:border-[#1053D4] text-[#111c2d] hover:text-[#1053D4] text-sm font-semibold transition-all shadow-xs"
+                  >
+                    <span>View in Product Labs</span>
+                  </button>
+                </div>
+              </ScrollReveal>
+
+              {/* Right Interactive Phone Preview */}
+              <ScrollReveal direction="right" className="lg:col-span-5 flex justify-center">
+                <RideSyncPhonePreview />
+              </ScrollReveal>
+            </div>
+          )}
+
+          {/* PRODUCT 2: ALIGN */}
+          {featuredProduct === 'align' && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-2">
+              {/* Left Content */}
+              <ScrollReveal direction="left" className="lg:col-span-6 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-orange-200 text-[#ff6b00] text-xs font-bold tracking-wide shadow-xs">
+                  <AnimatedTerminalIcon size={16} />
+                  <span>DEVELOPER SUITE • IN-BROWSER CODE UTILITY</span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-[#111c2d] tracking-tight leading-snug">
+                  Align: Fast Code Differ, SQL Normalizer & Beautifier
+                </h3>
+
+                <p className="text-base text-[#424653] leading-relaxed max-w-xl">
+                  A high-performance developer workspace for comparing code diffs side-by-side, aligning SQL queries across dialects, and beautifying multi-language files with zero server transmissions.
+                </p>
+
+                {/* 4 Features Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                  <div className="space-y-1.5 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-orange-100 hover:border-[#ff6b00] transition-colors shadow-2xs">
+                    <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
+                      <GitCompare className="w-5 h-5 text-[#ff6b00]" />
+                      <span>Monaco Code Diff</span>
+                    </div>
+                    <p className="text-xs text-[#424653] leading-relaxed">
+                      Instant split and inline diffing powered by Monaco with syntax highlighting for 15+ languages.
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-orange-100 hover:border-[#ff6b00] transition-colors shadow-2xs">
+                    <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
+                      <Database className="w-5 h-5 text-[#ff6b00]" />
+                      <span>SQL Dialect Compare</span>
+                    </div>
+                    <p className="text-xs text-[#424653] leading-relaxed">
+                      Compare queries, normalize keywords, and format across PostgreSQL, T-SQL, and MySQL.
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-orange-100 hover:border-[#ff6b00] transition-colors shadow-2xs">
+                    <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
+                      <Sparkles className="w-5 h-5 text-[#ff6b00]" />
+                      <span>Code Beautifier</span>
+                    </div>
+                    <p className="text-xs text-[#424653] leading-relaxed">
+                      Clean indentation, bracket alignment, and unpacking for JSON, JS, TS, HTML, and CSS.
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-orange-100 hover:border-[#ff6b00] transition-colors shadow-2xs">
+                    <div className="flex items-center gap-2.5 text-sm font-bold text-[#111c2d]">
+                      <Lock className="w-5 h-5 text-emerald-600" />
+                      <span>100% In-Browser Privacy</span>
+                    </div>
+                    <p className="text-xs text-[#424653] leading-relaxed">
+                      Zero server logs or tracking. Your confidential enterprise code never leaves the browser memory.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 flex flex-wrap items-center gap-4">
+                  <a
+                    href="https://align.vaptechsol.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#ff6b00] hover:bg-[#e05e00] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all active:scale-[0.99] group"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    <span>Launch Align Live (Free)</span>
+                    <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </a>
+
+                  <button
+                    onClick={() => onNavigate('products')}
+                    className="cursor-pointer inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white border border-[#d0daf2] hover:border-[#ff6b00] text-[#111c2d] hover:text-[#ff6b00] text-sm font-semibold transition-all shadow-xs"
+                  >
+                    <span>View in Product Labs</span>
+                  </button>
+                </div>
+              </ScrollReveal>
+
+              {/* Right Interactive Editor Studio Preview */}
+              <ScrollReveal direction="right" className="lg:col-span-6 flex justify-center">
+                <AlignEditorPreview />
+              </ScrollReveal>
+            </div>
+          )}
         </div>
       </section>
 

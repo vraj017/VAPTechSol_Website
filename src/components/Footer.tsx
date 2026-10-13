@@ -95,11 +95,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </button>
               </li>
               <li>
+                <a
+                  href="https://align.vaptechsol.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#ff6b00] transition-colors cursor-pointer text-left flex items-center gap-1.5 group"
+                >
+                  <span className="group-hover:underline">Align (Code Differ)</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00]" />
+                </a>
+              </li>
+              <li>
                 <button
                   onClick={() => handleNav('products')}
                   className="hover:text-[#004ab0] transition-colors cursor-pointer text-left"
                 >
-                  Innovation Labs
+                  Product Labs
                 </button>
               </li>
             </ul>
