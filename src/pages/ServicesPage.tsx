@@ -34,7 +34,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       animatedIcon: <AnimatedTerminalIcon size={22} />,
       description: 'Engineered from ground zero to align seamlessly with corporate workflows and scale on demand. We build proprietary, enterprise-grade software that adapts directly to your institutional parameters.',
       impact: 'Solves outgrown spreadsheets, fragile macros, and disconnected departmental data silos with cohesive modular platforms.',
-      stack: ['React', 'TypeScript', 'Node.js', 'Go', 'PostgreSQL', 'Docker', 'AWS'],
       deliverables: ['Production-ready code', 'Full architecture docs', 'Turnkey CI/CD pipelines'],
     },
     {
@@ -46,7 +45,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       animatedIcon: <AnimatedGlobeIcon size={22} />,
       description: 'High-converting digital front doors and enterprise portals built with pristine design and clean code. We emphasize accessibility, brand authority, and lightning-fast edge delivery.',
       impact: 'Solves low conversion, sluggish asset load times, and unmaintainable legacy code with accessible, mobile-first layouts.',
-      stack: ['Next.js', 'React', 'Tailwind CSS', 'Vite', 'Cloudflare'],
       deliverables: ['Fluid design systems', 'Global CDN distribution', 'Full SEO optimization'],
     },
     {
@@ -58,7 +56,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       animatedIcon: <AnimatedMobileIcon size={22} />,
       description: 'Performant, cross-platform mobile apps engineered for fluid interactions and rock-solid offline capabilities. Built from shared logic modules without sacrificing platform-specific polish.',
       impact: 'Replaces clunky inconsistent mobile experiences with native performance, instantaneous biometric auth, and intuitive gesture navigation.',
-      stack: ['React Native', 'Swift', 'Kotlin', 'Flutter'],
       deliverables: ['iOS & Android builds', 'App store approvals', 'Offline sync architecture'],
     },
     {
@@ -70,7 +67,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       animatedIcon: <AnimatedDatabaseIcon size={22} />,
       description: 'High-throughput microservices and REST/GraphQL APIs engineered for zero data leaks and effortless integration. We craft secure relational schemas and resilient message processing backbones.',
       impact: 'Replaces brittle monolithic scripts with event-driven message queuing, OAuth2 authentication, and hardened endpoints ready for volume surges.',
-      stack: ['Go', 'Node.js', 'Python', 'PostgreSQL', 'Redis', 'Docker Swarm'],
       deliverables: ['Documented OpenAPI / Swagger', 'Rate limiting & RBAC', 'High-availability clusters'],
     },
     {
@@ -82,7 +78,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       animatedIcon: <AnimatedAutomationIcon size={22} />,
       description: 'Eliminate operational friction by synchronizing financial tools, CRMs, ERPs, and supply chains autonomously. Hand off tedious reconciliation to intelligent background pipelines.',
       impact: 'Eliminates repetitive human error, cuts administrative hours drastically, and automates real-time invoice generation and cross-departmental reporting.',
-      stack: ['Python', 'Celery', 'Redis', 'Webhooks', 'REST Integrations'],
       deliverables: ['Bi-directional data sync', 'Automated failover alarms', 'Custom ERP connectors'],
     },
     {
@@ -94,7 +89,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       animatedIcon: <AnimatedShieldIcon size={22} />,
       description: 'High-caliber technical governance, cloud architecture reviews, and modernized infrastructure pipelines. We safeguard scale, eliminate technical debt, and optimize multi-cloud spending.',
       impact: 'Delivers on-demand fractional CTO guidance, aggressive cloud cost reduction, and comprehensive security compliance roadmaps.',
-      stack: ['Terraform', 'AWS', 'Docker', 'GitHub Actions', 'Kubernetes'],
       deliverables: ['Cloud spend audit', 'Compliance & security roadmap', 'Infrastructure as Code'],
     },
   ];
@@ -194,23 +188,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                       <p className="text-xs sm:text-sm text-[#111c2d] leading-relaxed font-medium">
                         {service.impact}
                       </p>
-                    </div>
-
-                    {/* Confirmed Tech Stack */}
-                    <div className="space-y-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#737785] block">
-                        Confirmed Tech Stack
-                      </span>
-                      <div className="flex flex-wrap gap-2">
-                        {service.stack.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2.5 py-1 rounded-md bg-[#f0f3ff] border border-[#d0daf2] text-xs font-semibold text-[#111c2d]"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
                     </div>
 
                     {/* Key Deliverables */}
