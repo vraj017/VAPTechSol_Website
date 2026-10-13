@@ -16,7 +16,6 @@ import {
   AnimatedCompassIcon,
   AnimatedLockNdaIcon,
   AnimatedStepIcon,
-  AnimatedLiveHeartbeat,
   ScrollReveal 
 } from '../components/AnimatedIcons.tsx';
 import { 
@@ -67,18 +66,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="lg:col-span-7 space-y-6"
             >
-              {/* Eyebrow with Animated Live Heartbeat */}
-              <div className="flex flex-wrap items-center gap-2">
-                <AnimatedLiveHeartbeat label="SOFTWARE DEVELOPMENT • DIGITAL PRODUCTS • INNOVATION" />
-              </div>
-
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-[#111c2d] leading-[1.12] tracking-tight text-balance">
+              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-[#111c2d] leading-[1.15] tracking-tight text-balance">
                 Turning Ideas Into Powerful{' '}
-                <span className="text-[#1053D4] relative inline-block">
-                  Digital Solutions.
-                  <span className="absolute bottom-1 left-0 right-0 h-1 bg-[#1053D4]/20 rounded-full" />
-                </span>
+                <span className="text-[#1053D4]">Digital Solutions.</span>
               </h1>
 
               {/* Subheading */}
@@ -92,20 +83,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('contact')}
                   className="cursor-pointer inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1053D4] hover:bg-[#0c44b0] text-white text-base font-semibold shadow-md hover:shadow-lg transition-all active:scale-[0.99] group"
                 >
-                  <AnimatedRocketIcon size={20} />
                   <span>Start Your Project</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </button>
                 <button
                   onClick={() => onNavigate('products')}
-                  className="cursor-pointer inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-[#f0f3ff] text-[#111c2d] border border-[#c3c6d6] text-base font-semibold transition-all hover:border-[#1053D4]"
+                  className="cursor-pointer inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-[#f0f3ff] text-[#111c2d] border border-[#c3c6d6] text-base font-semibold transition-all hover:border-[#1053D4] group"
                 >
-                  <AnimatedRadarIcon size={18} />
                   <span>Explore Our Products</span>
+                  <ArrowRight className="w-4 h-4 text-[#737785] transition-transform group-hover:translate-x-1 group-hover:text-[#1053D4]" />
                 </button>
               </div>
 
-              {/* Metrics Bar with interactive live look */}
+              {/* Metrics Bar */}
               <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#e5eaf2] max-w-lg">
                 <div className="group">
                   <div className="text-2xl sm:text-3xl font-extrabold text-[#111c2d] group-hover:text-[#1053D4] transition-colors">100%</div>
@@ -120,7 +110,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   </div>
                 </div>
                 <div className="group">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#E11D23]">Agile</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#111c2d] group-hover:text-[#1053D4] transition-colors">Agile</div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-[#737785] mt-0.5">
                     Rapid Delivery
                   </div>
@@ -128,14 +118,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
             </motion.div>
 
-            {/* Right Interactive Mockup Column */}
+            {/* Right Core Capabilities Column */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
               className="lg:col-span-5"
             >
-              <HeroPlatformMockup />
+              <HeroPlatformMockup onNavigate={onNavigate} />
             </motion.div>
           </div>
         </div>
